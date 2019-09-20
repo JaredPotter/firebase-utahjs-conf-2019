@@ -29,8 +29,8 @@ const runtimeOpts = {
 // Cron Job Schedule - How Often to trigger the function.
 const schedule = '0 9 * * *'; // Everyday at 9am server time.
 
-// exports.utahJsConfWebCrawler = functions.runWith(runtimeOpts).pubsub.schedule(schedule).onRun(async () => {
-exports.utahJsConfWebCrawler = functions.https.onRequest(async () => { // for debugging. Run firebase emulators:start --only functions
+exports.utahJsConfWebCrawler = functions.runWith(runtimeOpts).pubsub.schedule(schedule).onRun(async () => {
+// exports.utahJsConfWebCrawler = functions.https.onRequest(async () => { // for debugging. Run firebase emulators:start --only functions
     console.log('UtahJs Conf 2019 Web Crawler Started using Puppeteer!');
 
     const browser = await puppeteer.launch({
@@ -146,4 +146,8 @@ exports.utahJsConfWebCrawler = functions.https.onRequest(async () => { // for de
 });
 
 // For debugging.
-exports.utahJsConfWebCrawler();
+// exports.utahJsConfWebCrawler();
+
+exports.testFunction = functions.https.onRequest((req, res) => {
+    res.send('Hello, Utah.js!');
+});
